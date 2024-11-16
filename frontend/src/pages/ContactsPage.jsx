@@ -1,4 +1,3 @@
-// src/pages/ContactsPage.jsx
 import React, { useState, useEffect } from "react";
 import { fetchContacts } from "../services/apiService";
 import { Table, TableHead, TableRow, TableCell, TableBody, TableContainer, Paper } from "@mui/material";
