@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { fetchContacts } from "../services/apiService";
-import { Table, TableHead, TableRow, TableCell, TableBody, TableContainer, Paper } from "@mui/material";
+import { fetchContacts, deleteContact } from "../services/apiService";
+import { Table, TableHead, TableRow, TableCell, TableBody, TableContainer, Paper, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const ContactsPage = () => {
   const [contacts, setContacts] = useState([]);
+  const navigate = useNavigate();
 
   const loadContacts = async () => {
     try {
@@ -14,23 +16,37 @@ const ContactsPage = () => {
     }
   };
 
-  console.log(contacts);
-  
+  const handleDelete = async (id) => {
+    try {
+      await deleteContact(id);
+      alert('Contact deleted successfully!');
+      loadContacts(); // Reload contacts after successful deletion
+    } catch (error) {
+      console.error("Error deleting contact:", error);
+    }
+  };
+
+  const handleEdit = (id) => {
+    // Navigate to an edit page, passing the contact ID
+    navigate(`/edit-contact/${id}`);
+  };
+
   useEffect(() => {
     loadContacts();
   }, []);
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} style={{ marginTop: "20px" }}>
       <Table>
         <TableHead>
           <TableRow>
             <TableCell>First Name</TableCell>
             <TableCell>Last Name</TableCell>
             <TableCell>Email</TableCell>
-            <TableCell>Phone Number</TableCell>
+            <TableCell>Phone</TableCell>
             <TableCell>Company</TableCell>
             <TableCell>Job Title</TableCell>
+            <TableCell>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -42,6 +58,25 @@ const ContactsPage = () => {
               <TableCell>{contact.phone}</TableCell>
               <TableCell>{contact.company}</TableCell>
               <TableCell>{contact.job_title}</TableCell>
+              <TableCell>
+                <Button 
+                  color="primary" 
+                  variant="contained" 
+                  size="small" 
+                  onClick={() => handleEdit(contact.id)} 
+                  style={{ marginRight: "10px" }}
+                >
+                  Edit
+                </Button>
+                <Button 
+                  color="secondary" 
+                  variant="contained" 
+                  size="small" 
+                  onClick={() => handleDelete(contact.id)}
+                >
+                  Delete
+                </Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

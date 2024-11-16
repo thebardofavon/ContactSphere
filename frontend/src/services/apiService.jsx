@@ -14,3 +14,21 @@ export const addContact = async (contact) => {
 export const deleteContact = async (id) => {
   await axios.delete(`${BASE_URL}/${id}`);
 };
+
+// Fetch a specific contact by ID
+export const getContactById = async (id) => {
+  const response = await fetch(`${BASE_URL}/${id}`);
+  if (!response.ok) throw new Error("Failed to fetch contact");
+  return response.json();
+};
+
+// Update a contact by ID
+export const updateContact = async (id, contactData) => {
+  const response = await fetch(`${BASE_URL}/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(contactData),
+  });
+  if (!response.ok) throw new Error("Failed to update contact");
+  return response.json();
+};
