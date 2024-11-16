@@ -46,8 +46,8 @@ Ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/contact-management-system.git
-cd contact-management-system
+git clone https://github.com/your-username/contact-management.git
+cd contact-management
 ```
 
 ### 2. Install Dependencies
