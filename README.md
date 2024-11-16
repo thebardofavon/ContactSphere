@@ -65,8 +65,8 @@ npm install
 ```
 ### 3. Configure the Database
 
-1. Create a new MySQL database named contacts_db.
-2. Use the provided SQL script to set up the database schema:
+#### 1. Create a new MySQL database named contacts_db.
+#### 2. Use the provided SQL script to set up the database schema:
 
 ```bash
 CREATE DATABASE contacts_db;
@@ -83,7 +83,7 @@ CREATE TABLE contacts (
     job_title VARCHAR(100)
 );
 ```
-3. Update the database connection details in backend/config/db.js:
+#### 3. Update the database connection details in backend/config/db.js:
 
 ```bash
 const db = mysql.createConnection({
@@ -94,15 +94,15 @@ const db = mysql.createConnection({
 });
 ```
 
-4. Start the Application
+#### 4. Start the Application
 
-#### Backend:
+##### Backend:
 ```bash
 cd backend
 node server.js
 ```
 
-#### Frontend:
+##### Frontend:
 
 ```bash
 cd frontend
