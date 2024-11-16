@@ -54,7 +54,6 @@ cd contact-management-system
 
 Frontend:
 ```bash
-Copy code
 cd frontend
 npm install
 ```
@@ -83,32 +82,31 @@ CREATE TABLE contacts (
     job_title VARCHAR(100)
 );
 ```
-iii. Update the database connection details in backend/config/db.js:
+iii. Create a .env file and update the database connection details in the dotenv file as follows:
 
 ```bash
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'your_username',
-    password: 'your_password',
-    database: 'contacts_db'
-});
+DB_HOST=localhost
+DB_USER=your_username
+DB_PASS=your_password
+DB_NAME=contacts_db
+PORT=your_port
 ```
 iv. Start the Application
 
-##### Backend:
+#### Backend:
 ```bash
 cd backend
-node server.js
+node index.js
 ```
 
-##### Frontend:
+#### Frontend:
 
 ```bash
 cd frontend
 npm run dev
 ```
 
-Access the application at http://localhost:5173.
+Access the application at http://localhost:5173 or wherever it prompts you to.
 
 # Contact Management System
 
@@ -172,7 +170,7 @@ Access the application at http://localhost:5173.
 ## Future Improvements
 
 - Add authentication for secure access.  
-- Implement search and filtering for contacts.  
+- Implement advanced search and filtering for contacts.  
 - Deploy the app to a cloud platform.
 
 ---
