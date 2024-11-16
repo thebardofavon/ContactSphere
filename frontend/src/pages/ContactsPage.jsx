@@ -56,7 +56,7 @@ const ContactsPage = () => {
     setSearchTerm(value);
 
     if (value === "") {
-      setFilteredContacts(contacts); // Show all contacts if search term is empty
+      setFilteredContacts(contacts);
     } else {
       const filtered = contacts.filter(
         (contact) =>
@@ -140,7 +140,7 @@ const ContactsPage = () => {
                   backgroundColor: "#808080",
                   color: "#fff",
                   fontSize: "1.1rem",
-                  fontWeight: "normal", // Remove bold font weight
+                  fontWeight: "normal", 
                   padding: "12px 16px",
                 }}
               >
@@ -149,9 +149,9 @@ const ContactsPage = () => {
                   direction={orderBy === "first_name" ? order : "asc"}
                   onClick={() => handleRequestSort("first_name")}
                   sx={{
-                    color: orderBy === "first_name" ? "#f4f4f4" : "#fff", // Grey color when selected, white when not
+                    color: orderBy === "first_name" ? "#f4f4f4" : "#fff", 
                     "&:hover": {
-                      color: orderBy === "first_name" ? "#f4f4f4" : "#fff", // Grey when hovering over selected
+                      color: orderBy === "first_name" ? "#f4f4f4" : "#fff", 
                     },
                   }}
                 >
@@ -165,7 +165,7 @@ const ContactsPage = () => {
                   backgroundColor: "#808080",
                   color: "#fff",
                   fontSize: "1.1rem",
-                  fontWeight: "normal", // Remove bold font weight
+                  fontWeight: "normal", 
                   padding: "12px 16px",
                 }}
               >
@@ -174,9 +174,9 @@ const ContactsPage = () => {
                   direction={orderBy === "last_name" ? order : "asc"}
                   onClick={() => handleRequestSort("last_name")}
                   sx={{
-                    color: orderBy === "last_name" ? "#f4f4f4" : "#fff", // Grey color when selected, white when not
+                    color: orderBy === "last_name" ? "#f4f4f4" : "#fff", 
                     "&:hover": {
-                      color: orderBy === "last_name" ? "#f4f4f4" : "#fff", // Grey when hovering over selected
+                      color: orderBy === "last_name" ? "#f4f4f4" : "#fff", 
                     },
                   }}
                 >
@@ -207,9 +207,9 @@ const ContactsPage = () => {
               <TableRow
                 key={contact.id}
                 sx={{
-                  backgroundColor: index % 2 === 0 ? "#f9f9f9" : "#fff", // Alternating row colors
+                  backgroundColor: index % 2 === 0 ? "#f9f9f9" : "#fff", 
                   "&:hover": {
-                    backgroundColor: "#e3f2fd", // Light blue hover effect
+                    backgroundColor: "#e3f2fd", 
                   },
                 }}
               >

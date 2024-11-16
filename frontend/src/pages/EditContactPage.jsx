@@ -4,8 +4,8 @@ import { getContactById, updateContact } from "../services/apiService";
 import { TextField, Button, Paper, Typography, Box } from "@mui/material";
 
 const EditContactPage = () => {
-  const { id } = useParams(); // Get the contact ID from the route parameters
-  console.log("Fetching contact with ID:", id);
+  const { id } = useParams(); 
+  // console.log("Fetching contact with ID:", id);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -19,11 +19,10 @@ const EditContactPage = () => {
 
   const [loading, setLoading] = useState(true);
 
-  // Load contact data for the given ID
   const loadContact = async () => {
     try {
-      const contact = await getContactById(id); // Fetch contact details by ID
-      setFormData(contact); // Populate form data
+      const contact = await getContactById(id); 
+      setFormData(contact); 
       setLoading(false);
     } catch (error) {
       console.error("Error loading contact data:", error);
@@ -42,10 +41,10 @@ const EditContactPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await updateContact(id, formData); // Update the contact in the database
+      await updateContact(id, formData); 
       console.log("Contact updated; navigating back to contact");
       alert('Contact updated successfully!');
-      navigate("/contacts"); // Navigate back to the contacts list
+      navigate("/contacts"); 
     } catch (error) {
       console.error("Error updating contact:", error);
     }

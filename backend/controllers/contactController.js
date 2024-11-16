@@ -1,6 +1,5 @@
 const db = require('../config/db');
 
-// Get all contacts
 exports.getContacts = (req, res) => {
     const sql = 'SELECT * FROM contacts';
     db.query(sql, (err, results) => {
@@ -10,7 +9,7 @@ exports.getContacts = (req, res) => {
     });
 };
 
-// Add a new contact
+
 exports.createContact = (req, res) => {
     const { first_name, last_name, email, phone, company, job_title } = req.body;
     const sql = 'INSERT INTO contacts (first_name, last_name, email, phone, company, job_title) VALUES (?, ?, ?, ?, ?, ?)';
@@ -20,16 +19,6 @@ exports.createContact = (req, res) => {
     });
 };
 
-// Update an existing contact
-// exports.updateContact = (req, res) => {
-//     const { id } = req.params;
-//     const { first_name, last_name, email, phone, company, job_title } = req.body;
-//     const sql = 'UPDATE contacts SET first_name = ?, last_name = ?, email = ?, phone = ?, company = ?, job_title = ? WHERE id = ?';
-//     db.query(sql, [first_name, last_name, email, phone, company, job_title, id], (err) => {
-//         if (err) return res.status(500).json({ error: err.message });
-//         res.sendStatus(200);
-//     });
-// };
 
 exports.updateContact = (req, res) => {
     const { id } = req.params;
@@ -37,12 +26,11 @@ exports.updateContact = (req, res) => {
     const sql = 'UPDATE contacts SET first_name = ?, last_name = ?, email = ?, phone = ?, company = ?, job_title = ? WHERE id = ?';
     db.query(sql, [first_name, last_name, email, phone, company, job_title, id], (err) => {
       if (err) return res.status(500).json({ error: err.message });
-      res.status(200).json({ message: 'Contact updated successfully' });  // Updated response
+      res.status(200).json({ message: 'Contact updated successfully' });
     });
   };
   
 
-// Delete a contact
 exports.deleteContact = (req, res) => {
     const { id } = req.params;
     const sql = 'DELETE FROM contacts WHERE id = ?';
@@ -52,18 +40,7 @@ exports.deleteContact = (req, res) => {
     });
 };
 
-// Get contact by ID !!
-// exports.getContactById = (req, res) => {
-//     const { id } = req.params;
-//     const sql = 'SELECT * FROM contacts WHERE id = ?';
-//     db.query(sql, [id], (err, results) => {
-//         if (err) 
-//             return res.status(500).json({ error: err.message });
-//         res.json(results);
-//     });
-// };
 
-// Get contact by ID
 exports.getContactById = (req, res) => {
     const { id } = req.params;
     const sql = 'SELECT * FROM contacts WHERE id = ?';

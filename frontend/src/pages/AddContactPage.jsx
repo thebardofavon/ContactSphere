@@ -1,4 +1,3 @@
-// src/pages/AddContactPage.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addContact } from "../services/apiService";
@@ -25,7 +24,7 @@ const AddContactPage = () => {
     e.preventDefault();
     await addContact(formData);
     setFormData({ first_name: "", last_name: "", email: "", phone: "", company: "", job_title: "" });
-    navigate("/contacts"); // Navigate to contacts list after successful addition
+    navigate("/contacts");
     alert('Contact added successfully!');
   };
 

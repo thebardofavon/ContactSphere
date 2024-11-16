@@ -8,14 +8,14 @@ const Navbar = () => {
       position="static"
       sx={{
         background: "linear-gradient(to right, #1976d2, #2196f3)",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Subtle shadow
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", 
       }}
     >
       <Toolbar
         sx={{
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "0 20px", // Padding to keep content from touching edges
+          padding: "0 20px", 
         }}
       >
         <Typography
@@ -23,8 +23,8 @@ const Navbar = () => {
           sx={{
               fontWeight: "bold",
             fontSize: "1.4rem",
-            color: "#fff", // White text color
-            letterSpacing: "1px", // Slight spacing for a modern touch
+            color: "#fff", 
+            letterSpacing: "1px", 
           }}
         >
           Contact Manager
@@ -38,7 +38,7 @@ const Navbar = () => {
               fontSize: "1rem",
               marginRight: "15px",
               "&:hover": {
-                backgroundColor: "#1976d2", // Darken on hover
+                backgroundColor: "#1976d2", 
                 borderRadius: "5px",
               },
             }}
