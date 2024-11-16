@@ -65,8 +65,8 @@ npm install
 ```
 ### 3. Configure the Database
 
-#### 1. Create a new MySQL database named contacts_db.
-#### 2. Use the provided SQL script to set up the database schema:
+i. Create a new MySQL database named contacts_db.
+ii. Use the provided SQL script to set up the database schema:
 
 ```bash
 CREATE DATABASE contacts_db;
@@ -83,7 +83,7 @@ CREATE TABLE contacts (
     job_title VARCHAR(100)
 );
 ```
-#### 3. Update the database connection details in backend/config/db.js:
+iii. Update the database connection details in backend/config/db.js:
 
 ```bash
 const db = mysql.createConnection({
@@ -93,8 +93,7 @@ const db = mysql.createConnection({
     database: 'contacts_db'
 });
 ```
-
-#### 4. Start the Application
+iv. Start the Application
 
 ##### Backend:
 ```bash
@@ -111,72 +110,78 @@ npm run dev
 
 Access the application at http://localhost:5173.
 
+# Contact Management System
+
 ## How It Works
 
 ### Frontend
 
-Add Contact: Form with validation to ensure proper email format and a phone number with a country code.
-Edit Contact: Pre-populated form for editing, with validation and duplicate detection.
-View Contacts: List of all contacts retrieved via the backend API.
-Delete Contact: Removes the contact and refreshes the view.
+- **Add Contact**:  
+  Form with validation to ensure proper email format and a phone number with a country code.
+
+- **Edit Contact**:  
+  Pre-populated form for editing, with validation and duplicate detection.
+
+- **View Contacts**:  
+  List of all contacts retrieved via the backend API.
+
+- **Delete Contact**:  
+  Removes the contact and refreshes the view.
 
 ### Backend
-Create Contact:
-Validates input fields (email, phone).
-Checks for duplicates before insertion.
-Update Contact:
-Ensures no duplicates for updated records.
-Updates data in the database.
-Delete Contact:
-Removes the contact by its ID.
-Get Contacts:
-Fetches all records from the database.
-Get Contact by ID:
-Retrieves details for a specific contact.
+
+- **Create Contact**:  
+  - Validates input fields (email, phone).  
+  - Checks for duplicates before insertion.
+
+- **Update Contact**:  
+  - Ensures no duplicates for updated records.  
+  - Updates data in the database.
+
+- **Delete Contact**:  
+  Removes the contact by its ID.
+
+- **Get Contacts**:  
+  Fetches all records from the database.
+
+- **Get Contact by ID**:  
+  Retrieves details for a specific contact.
+
+---
 
 ## Challenges and Solutions
-1. Validating Phone Numbers and Emails
-Challenge: Enforcing phone numbers to include a valid country code and validating email format.
-Solution: Used regex patterns both in the frontend and backend to validate these inputs.
-2. Handling Duplicate Entries
-Challenge: Prevent duplicate email addresses or phone numbers from being added or updated.
-Solution: Implemented duplicate checks in the backend API using SQL queries.
-3. Error Messaging
-Challenge: Providing clear error messages to users.
-Solution: Implemented detailed error handling in both frontend and backend, with appropriate messages displayed on the UI.
-4. Frontend and Backend Synchronization
 
-Challenge: Ensuring consistent validation across frontend and backend.
-Solution: Shared validation logic and tested API responses thoroughly to maintain uniform behavior.
+1. **Validating Phone Numbers and Emails**  
+   - **Challenge**: Enforcing phone numbers to include a valid country code and validating email format.  
+   - **Solution**: Used regex patterns both in the frontend and backend to validate these inputs.
 
-## Folder Structure
-contact-management-system/
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/     # React components
-│   │   ├── pages/          # AddContactPage, EditContactPage, ViewContactsPage
-│   │   ├── services/       # API service functions
-│   │   ├── App.jsx         # Main app component
-│   │   └── main.jsx        # Entry point
-│   └── vite.config.js
-├── backend/
-│   ├── config/
-│   │   └── db.js           # Database configuration
-│   ├── routes/
-│   │   └── contactRoutes.js # API route definitions
-│   ├── controllers/
-│   │   └── contactController.js # Business logic
-│   └── server.js           # Express server setup
-└── README.md
+2. **Handling Duplicate Entries**  
+   - **Challenge**: Prevent duplicate email addresses or phone numbers from being added or updated.  
+   - **Solution**: Implemented duplicate checks in the backend API using SQL queries.
 
+3. **Error Messaging**  
+   - **Challenge**: Providing clear error messages to users.  
+   - **Solution**: Implemented detailed error handling in both frontend and backend, with appropriate messages displayed on the UI.
+
+4. **Frontend and Backend Synchronization**  
+   - **Challenge**: Ensuring consistent validation across frontend and backend.  
+   - **Solution**: Shared validation logic and tested API responses thoroughly to maintain uniform behavior.
+
+---
 
 ## Future Improvements
-Add authentication for secure access.
-Implement search and filtering for contacts.
-Deploy the app to a cloud platform.
+
+- Add authentication for secure access.  
+- Implement search and filtering for contacts.  
+- Deploy the app to a cloud platform.
+
+---
 
 ## Author
-Created by Anushka Srivastava as a part of a CRM mini-feature assignment.
+
+Created by **Anushka Srivastava** as a part of a CRM mini-feature assignment.
+
+
+
 
 
