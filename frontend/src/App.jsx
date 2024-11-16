@@ -1,29 +1,20 @@
-import React, { useState, useEffect } from "react";
-import ContactForm from "./components/ContactForm";
-import ContactsTable from "./components/ContactsTable";
-import { fetchContacts } from "./services/apiService";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import ContactsPage from "./pages/ContactsPage";
+import Home from "./pages/Home";
+import AddContactPage from "./pages/AddContactPage";
 
 const App = () => {
-  const [contacts, setContacts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    loadContacts();
-  }, []);
-
-  const loadContacts = async () => {
-    setLoading(true);
-    const data = await fetchContacts();
-    setContacts(data);
-    setLoading(false);
-  };
-
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Contact Management</h1>
-      <ContactForm reloadContacts={loadContacts} />
-      <ContactsTable contacts={contacts} reloadContacts={loadContacts} loading={loading} />
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contacts" element={<ContactsPage />} />
+        <Route path="/add-contact" element={<AddContactPage />} />
+      </Routes>
+    </Router>
   );
 };
 
