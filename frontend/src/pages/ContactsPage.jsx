@@ -6,15 +6,18 @@ import { Table, TableHead, TableRow, TableCell, TableBody, TableContainer, Paper
 const ContactsPage = () => {
   const [contacts, setContacts] = useState([]);
 
+  const loadContacts = async () => {
+    try {
+      const data = await fetchContacts();
+      setContacts(data);
+    } catch (error) {
+      console.error("Error fetching contacts:", error);
+    }
+  };
+
+  console.log(contacts);
+  
   useEffect(() => {
-    const loadContacts = async () => {
-      try {
-        const data = await fetchContacts();
-        setContacts(data);
-      } catch (error) {
-        console.error("Error fetching contacts:", error);
-      }
-    };
     loadContacts();
   }, []);
 
@@ -34,12 +37,12 @@ const ContactsPage = () => {
         <TableBody>
           {contacts.map((contact) => (
             <TableRow key={contact.id}>
-              <TableCell>{contact.firstName}</TableCell>
-              <TableCell>{contact.lastName}</TableCell>
+              <TableCell>{contact.first_name}</TableCell>
+              <TableCell>{contact.last_name}</TableCell>
               <TableCell>{contact.email}</TableCell>
-              <TableCell>{contact.phoneNumber}</TableCell>
+              <TableCell>{contact.phone}</TableCell>
               <TableCell>{contact.company}</TableCell>
-              <TableCell>{contact.jobTitle}</TableCell>
+              <TableCell>{contact.job_title}</TableCell>
             </TableRow>
           ))}
         </TableBody>

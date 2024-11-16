@@ -5,29 +5,42 @@ import { addContact } from "../services/apiService";
 import { TextField, Button, Paper, Typography, Box } from "@mui/material";
 
 const AddContactPage = () => {
-  const [contact, setContact] = useState({
-    firstName: "",
-    lastName: "",
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
     email: "",
-    phoneNumber: "",
+    phone: "",
     company: "",
-    jobTitle: "",
+    job_title: "",
   });
+
   const navigate = useNavigate();
+
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setContact({ ...contact, [name]: value });
+  // };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     await addContact(contact);
+  //     navigate("/contacts"); // Navigate to contacts list after successful addition
+  //   } catch (error) {
+  //     console.error("Error adding contact:", error);
+  //   }
+  // };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setContact({ ...contact, [name]: value });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await addContact(contact);
-      navigate("/contacts"); // Navigate to contacts list after successful addition
-    } catch (error) {
-      console.error("Error adding contact:", error);
-    }
+    await addContact(formData);
+    setFormData({ first_name: "", last_name: "", email: "", phone: "", company: "", job_title: "" });
+    navigate("/contacts"); // Navigate to contacts list after successful addition
   };
 
   return (
@@ -39,15 +52,15 @@ const AddContactPage = () => {
         <Box display="flex" flexDirection="column" gap="15px">
           <TextField
             label="First Name"
-            name="firstName"
-            value={contact.firstName}
+            name="first_name"
+            value={formData.first_name}
             onChange={handleChange}
             required
           />
           <TextField
             label="Last Name"
-            name="lastName"
-            value={contact.lastName}
+            name="last_name"
+            value={formData.last_name}
             onChange={handleChange}
             required
           />
@@ -55,28 +68,28 @@ const AddContactPage = () => {
             label="Email"
             name="email"
             type="email"
-            value={contact.email}
+            value={formData.email}
             onChange={handleChange}
             required
           />
           <TextField
             label="Phone Number"
-            name="phoneNumber"
+            name="phone"
             type="tel"
-            value={contact.phoneNumber}
+            value={formData.phone}
             onChange={handleChange}
             required
           />
           <TextField
             label="Company"
             name="company"
-            value={contact.company}
+            value={formData.company}
             onChange={handleChange}
           />
           <TextField
             label="Job Title"
-            name="jobTitle"
-            value={contact.jobTitle}
+            name="job_title"
+            value={formData.job_title}
             onChange={handleChange}
           />
           <Button variant="contained" color="primary" type="submit">
