@@ -16,21 +16,6 @@ const AddContactPage = () => {
 
   const navigate = useNavigate();
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setContact({ ...contact, [name]: value });
-  // };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     await addContact(contact);
-  //     navigate("/contacts"); // Navigate to contacts list after successful addition
-  //   } catch (error) {
-  //     console.error("Error adding contact:", error);
-  //   }
-  // };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -41,11 +26,12 @@ const AddContactPage = () => {
     await addContact(formData);
     setFormData({ first_name: "", last_name: "", email: "", phone: "", company: "", job_title: "" });
     navigate("/contacts"); // Navigate to contacts list after successful addition
+    alert('Contact added successfully!');
   };
 
   return (
-    <Paper elevation={3} style={{ padding: "20px", maxWidth: "600px", margin: "20px auto" }}>
-      <Typography variant="h5" gutterBottom>
+    <Paper elevation={3} style={{ padding: "25px", maxWidth: "600px", margin: "20px auto" }}>
+      <Typography variant="h5" align="center" marginBottom={2} gutterBottom>
         Add New Contact
       </Typography>
       <form onSubmit={handleSubmit}>
@@ -92,9 +78,17 @@ const AddContactPage = () => {
             value={formData.job_title}
             onChange={handleChange}
           />
-          <Button variant="contained" color="primary" type="submit">
+
+          <Button
+            variant="contained"
+            type="submit"
+            sx={{
+              padding: "10px 20px",
+            }}
+          >
             Add Contact
           </Button>
+
         </Box>
       </form>
     </Paper>

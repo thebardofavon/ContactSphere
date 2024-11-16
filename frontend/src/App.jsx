@@ -5,18 +5,27 @@ import ContactsPage from "./pages/ContactsPage";
 import Home from "./pages/Home";
 import AddContactPage from "./pages/AddContactPage";
 import EditContactPage from "./pages/EditContactPage";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", sans-serif',
+  },
+});
 
 const App = () => {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contacts" element={<ContactsPage />} />
-        <Route path="/add-contact" element={<AddContactPage />} />
-        <Route path="/edit-contact/:id" element={<EditContactPage />} />
-      </Routes>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="/add-contact" element={<AddContactPage />} />
+          <Route path="/edit-contact/:id" element={<EditContactPage />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 };
 

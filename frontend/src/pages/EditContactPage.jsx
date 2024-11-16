@@ -43,7 +43,7 @@ const EditContactPage = () => {
     e.preventDefault();
     try {
       await updateContact(id, formData); // Update the contact in the database
-      console.log("Contact updated; navigating back to contact")
+      console.log("Contact updated; navigating back to contact");
       alert('Contact updated successfully!');
       navigate("/contacts"); // Navigate back to the contacts list
     } catch (error) {
@@ -54,8 +54,8 @@ const EditContactPage = () => {
   if (loading) return <p>Loading contact data...</p>;
 
   return (
-    <Paper elevation={3} style={{ padding: "20px", maxWidth: "600px", margin: "20px auto" }}>
-      <Typography variant="h5" gutterBottom>
+    <Paper elevation={3} style={{ padding: "25px", maxWidth: "600px", margin: "20px auto" }}>
+      <Typography variant="h5" align="center" marginBottom={2} gutterBottom>
         Edit Contact
       </Typography>
       <form onSubmit={handleSubmit}>
@@ -83,7 +83,7 @@ const EditContactPage = () => {
             required
           />
           <TextField
-            label="Phone"
+            label="Phone Number"
             name="phone"
             type="tel"
             value={formData.phone}
@@ -102,7 +102,14 @@ const EditContactPage = () => {
             value={formData.job_title}
             onChange={handleChange}
           />
-          <Button variant="contained" color="primary" type="submit">
+
+          <Button
+            variant="contained"
+            type="submit"
+            sx={{
+              padding: "10px 20px",
+            }}
+          >
             Save Changes
           </Button>
         </Box>
