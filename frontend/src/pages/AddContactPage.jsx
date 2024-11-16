@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addContact } from "../services/apiService";
-import { TextField, Button, Paper, Typography, Box } from "@mui/material";
+import { TextField, Button, Paper, Typography, Box, CircularProgress } from "@mui/material";
 
 const AddContactPage = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +13,8 @@ const AddContactPage = () => {
     job_title: "",
   });
 
+  const [loading, setLoading] = useState(false); 
+  const [error, setError] = useState(""); 
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -22,11 +24,38 @@ const AddContactPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await addContact(formData);
-    setFormData({ first_name: "", last_name: "", email: "", phone: "", company: "", job_title: "" });
-    navigate("/contacts");
-    alert('Contact added successfully!');
-  };
+    setLoading(true);
+    setError(""); 
+
+    const phoneRegex = /^\+\d{1,3}\d{7,14}$/;
+    if (!phoneRegex.test(formData.phone)) {
+        setLoading(false);
+        setError("Phone number must include a valid country code (e.g., +91XXXXXXXXXX).");
+        return;
+    }
+
+    try {
+        await addContact(formData);
+        setFormData({
+            first_name: "",
+            last_name: "",
+            email: "",
+            phone: "",
+            company: "",
+            job_title: "",
+        });
+        alert("Contact added successfully!");
+        navigate("/contacts");
+    } catch (err) {
+        if (err.response && err.response.data) {
+            setError(err.response.data.error || "An unexpected error occurred.");
+        } else {
+            setError("An error occurred while adding the contact.");
+        }
+    } finally {
+        setLoading(false);
+    }
+};
 
   return (
     <Paper elevation={3} style={{ padding: "25px", maxWidth: "600px", margin: "20px auto" }}>
@@ -64,7 +93,9 @@ const AddContactPage = () => {
             value={formData.phone}
             onChange={handleChange}
             required
+            helperText="Include country code (e.g., +91XXXXXXXXXX)"
           />
+
           <TextField
             label="Company"
             name="company"
@@ -77,6 +108,7 @@ const AddContactPage = () => {
             value={formData.job_title}
             onChange={handleChange}
           />
+          {error && <Typography color="error">{error}</Typography>}
 
           <Button
             variant="contained"
@@ -84,10 +116,10 @@ const AddContactPage = () => {
             sx={{
               padding: "10px 20px",
             }}
+            disabled={loading} 
           >
-            Add Contact
+            {loading ? <CircularProgress size={24} /> : "Add Contact"}
           </Button>
-
         </Box>
       </form>
     </Paper>

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getContactById, updateContact } from "../services/apiService";
-import { TextField, Button, Paper, Typography, Box } from "@mui/material";
+import { TextField, Button, Paper, Typography, Box, CircularProgress } from "@mui/material";
 
 const EditContactPage = () => {
-  const { id } = useParams(); 
-  // console.log("Fetching contact with ID:", id);
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -17,15 +16,18 @@ const EditContactPage = () => {
     job_title: "",
   });
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // Initial loading state
+  const [error, setError] = useState(""); // Track error messages
 
   const loadContact = async () => {
     try {
-      const contact = await getContactById(id); 
-      setFormData(contact); 
+      const contact = await getContactById(id);
+      setFormData(contact);
+    } catch (err) {
+      console.error("Error loading contact data:", err);
+      setError("An error occurred while loading the contact data.");
+    } finally {
       setLoading(false);
-    } catch (error) {
-      console.error("Error loading contact data:", error);
     }
   };
 
@@ -40,13 +42,30 @@ const EditContactPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError(""); // Reset error on new submission
+
+    const phoneRegex = /^\+\d{1,3}\d{7,14}$/; // Enforce country code in phone number
+    if (!phoneRegex.test(formData.phone)) {
+      setLoading(false);
+      setError("Phone number must include a valid country code (e.g., +91XXXXXXXXXX).");
+      return;
+    }
+
     try {
-      await updateContact(id, formData); 
-      console.log("Contact updated; navigating back to contact");
-      alert('Contact updated successfully!');
-      navigate("/contacts"); 
-    } catch (error) {
-      console.error("Error updating contact:", error);
+      await updateContact(id, formData);
+      alert("Contact updated successfully!");
+      navigate("/contacts");
+    } catch (err) {
+      if (err.response && err.response.data) {
+        // Backend returned an error message
+        setError(err.response.data.error || "An unexpected error occurred.");
+      } else {
+        // Generic fallback
+        setError("An error occurred while updating the contact.");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -88,6 +107,7 @@ const EditContactPage = () => {
             value={formData.phone}
             onChange={handleChange}
             required
+            helperText="Include country code (e.g., +91XXXXXXXXXX)"
           />
           <TextField
             label="Company"
@@ -101,6 +121,7 @@ const EditContactPage = () => {
             value={formData.job_title}
             onChange={handleChange}
           />
+          {error && <Typography color="error">{error}</Typography>}
 
           <Button
             variant="contained"
@@ -108,8 +129,9 @@ const EditContactPage = () => {
             sx={{
               padding: "10px 20px",
             }}
+            disabled={loading} // Disable button while loading
           >
-            Save Changes
+            {loading ? <CircularProgress size={24} /> : "Save Changes"}
           </Button>
         </Box>
       </form>
