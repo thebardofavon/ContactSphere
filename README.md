@@ -5,6 +5,8 @@ This project is a **Contact Management System** designed as a mini-feature for a
 The project uses a **ReactJS** frontend styled with **Material UI**, a **Node.js** backend for API services, and **MySQL** for database management. It includes robust input validation and error handling both on the frontend and backend.
 
 ![1](https://github.com/user-attachments/assets/e356d11c-5054-44ad-8203-d54a61fb3f85)
+<img src="screenshots/1.png" alt="Small Logo" width="300">
+
 ---
 
 ## Features
