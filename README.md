@@ -4,7 +4,7 @@ This project is a **Contact Management System** designed as a mini-feature for a
 
 The project uses a **ReactJS** frontend styled with **Material UI**, a **Node.js** backend for API services, and **MySQL** for database management. It includes robust input validation and error handling both on the frontend and backend.
 
-<div style="display: flex; flex-wrap: wrap; gap: 10px; align: center">
+<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center">
   <img src="screenshots/1.png" alt="Home Page" width="450">
   <img src="screenshots/2.png" alt="Add Contact Page" width="450">
   <img src="screenshots/3.png" alt="Contact List Page" width="450">
