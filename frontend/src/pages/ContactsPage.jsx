@@ -61,7 +61,11 @@ const ContactsPage = () => {
       const filtered = contacts.filter(
         (contact) =>
           contact.first_name.toLowerCase().includes(value.toLowerCase()) ||
-          contact.last_name.toLowerCase().includes(value.toLowerCase())
+          contact.last_name.toLowerCase().includes(value.toLowerCase()) ||
+          contact.email.toLowerCase().includes(value.toLowerCase()) ||
+          contact.phone.toLowerCase().includes(value.toLowerCase()) ||
+          contact.company.toLowerCase().includes(value.toLowerCase()) ||
+          contact.job_title.toLowerCase().includes(value.toLowerCase())
       );
       setFilteredContacts(filtered);
     }
@@ -183,7 +187,6 @@ const ContactsPage = () => {
                   Last Name
               </TableSortLabel>
 
-
               </TableCell>
               <TableCell sx={{ backgroundColor: "#808080", color: "#fff", fontSize: "1.1rem", fontWeight: "normal" }}>
                 Email
@@ -202,6 +205,7 @@ const ContactsPage = () => {
               </TableCell>
             </TableRow>
           </TableHead>
+
           <TableBody>
             {paginatedContacts.map((contact, index) => (
               <TableRow

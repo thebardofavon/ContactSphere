@@ -17,6 +17,9 @@ exports.getContacts = (req, res) => {
             return res.status(500).json({ error: "Failed to retrieve contacts." });
         }
         res.json(results);
+        // console.log("Request URL:", req.url);
+        // console.log("Request Method:", req.method);
+        // console.log("Request Body:", req.body);
     });
 };
 
