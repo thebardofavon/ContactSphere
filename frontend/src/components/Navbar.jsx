@@ -27,7 +27,7 @@ const Navbar = () => {
             letterSpacing: "1px", 
           }}
         >
-          Contact Manager
+          ContactSphere
         </Typography>
         <div>
           <Button
