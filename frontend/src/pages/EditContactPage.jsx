@@ -16,8 +16,8 @@ const EditContactPage = () => {
     job_title: "",
   });
 
-  const [loading, setLoading] = useState(true); // Initial loading state
-  const [error, setError] = useState(""); // Track error messages
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(""); 
 
   const loadContact = async () => {
     try {
@@ -43,9 +43,9 @@ const EditContactPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError(""); // Reset error on new submission
+    setError(""); 
 
-    const phoneRegex = /^\+\d{1,3}\d{7,14}$/; // Enforce country code in phone number
+    const phoneRegex = /^\+\d{1,3}\d{7,14}$/;
     if (!phoneRegex.test(formData.phone)) {
       setLoading(false);
       setError("Phone number must include a valid country code (e.g., +91XXXXXXXXXX).");
@@ -58,10 +58,8 @@ const EditContactPage = () => {
       navigate("/contacts");
     } catch (err) {
       if (err.response && err.response.data) {
-        // Backend returned an error message
         setError(err.response.data.error || "An unexpected error occurred.");
       } else {
-        // Generic fallback
         setError("An error occurred while updating the contact.");
       }
     } finally {
@@ -129,7 +127,7 @@ const EditContactPage = () => {
             sx={{
               padding: "10px 20px",
             }}
-            disabled={loading} // Disable button while loading
+            disabled={loading} 
           >
             {loading ? <CircularProgress size={24} /> : "Save Changes"}
           </Button>
